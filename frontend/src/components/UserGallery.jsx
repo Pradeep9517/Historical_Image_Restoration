@@ -27,15 +27,26 @@ function UserGallery({ history }) {
           {history.map((item) => (
             <div
               key={item.id}
-              className="bg-slate-950/60 border border-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-emerald-500/20 transition"
+              className="relative bg-slate-950/60 border border-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-emerald-500/20 transition"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden group">
                 <img
                   src={item.restoredUrl}
                   alt="Restored"
-                  className="w-full h-full object-cover hover:scale-[1.03] transition-transform"
+                  className="w-full h-full object-cover transition-transform group-hover:scale-[1.03]"
                 />
+
+                {/* Download Overlay Button */}
+                <a
+                  href={item.restoredUrl}
+                  download={`restored-${item.id}.jpg`}
+                  className="absolute bottom-2 right-2 px-3 py-1.5 bg-emerald-500/90 hover:bg-emerald-400 text-[11px] font-semibold rounded-full shadow-lg shadow-emerald-500/30 transition opacity-100 group-hover:opacity-100"
+                >
+                  ⬇ Download
+                </a>
               </div>
+
               <div className="p-2.5 space-y-1">
                 <p className="text-xs text-slate-300">Restored preview</p>
                 <p className="text-[10px] text-slate-500">
